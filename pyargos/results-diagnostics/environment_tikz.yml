@@ -1,0 +1,12 @@
+name: jupyter-tikz-dev
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - ipykernel
+  - poppler
+  - pip
+  - pip:
+      - jupyterlab
+      - jupyter-tikz

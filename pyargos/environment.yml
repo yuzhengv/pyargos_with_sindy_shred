@@ -1,0 +1,21 @@
+name: pyargos
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - ipykernel
+  - ipywidgets
+  - numpy
+  - scipy
+  - scikit-learn
+  - statsmodels
+  - joblib
+  - matplotlib
+  - pandas
+  - pip
+  - pip:
+      - adelie
+      - arviz
+      - bambi
+      # - pytensor

@@ -1,0 +1,30 @@
+name: pyargos-shred-dev
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python
+  - ipykernel
+  - ipywidgets
+  - numpy
+  - scipy
+  - matplotlib
+  - scikit-learn
+  - statsmodels
+  - joblib
+  - tensorboard
+  - pandas
+  - sympy
+  - pip
+  - pip:
+      - torch
+      - adelie
+      - arviz
+      - bambi
+      - bayeux-ml
+      - flowmc == 0.3.4
+      - jax == 0.5
+      - gurobipy
+      - pysindy
+      - torchdyn
+      - dill

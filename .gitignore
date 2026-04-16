@@ -1,0 +1,32 @@
+# Byte-compiled
+__pycache__/
+# Ignore .DS_Store files anywhere in the repository
+.DS_Store
+**/.DS_Store
+
+# Data files
+sindy-shred-exp/Data/*
+pyargos/data/*
+
+# Saved model state
+sindy-shred-exp/saved-model-state/*.pth
+
+# Ignore everything in exp directory except the .md files
+sindy-shred-exp/exp/*/*
+!sindy-shred-exp/exp/*/*.md
+
+sindy-shred-exp/exp-1/*/*
+!sindy-shred-exp/exp-1/*/*.md
+!sindy-shred-exp/exp-1/*/*.sh
+
+# sindy-shred-exp/exp-ba/*/*
+# !sindy-shred-exp/exp-ba/*/*.md
+# !sindy-shred-exp/exp-ba/*/*.sh
+
+# sindy-shred-exp/exp-sindy/*/*
+# !sindy-shred-exp/exp-sindy/*/*.md
+# !sindy-shred-exp/exp-sindy/*/*.sh
+
+# Ignore running logs on HPC
+*.out
+stderr-filename
