@@ -1,6 +1,7 @@
 # PyARGOS with SINDy-SHRED
 
 This is the code repository for the manuscript **Fast and principled equation discovery from chaos to climate** ([arXiv:2604.11929](https://arxiv.org/abs/2604.11929)). It contains the Python implementation of Bayesian-ARGOS, its integration with SINDy-SHRED for equation discovery from spatiotemporal sensor data, and diagnostic analyses.
+For the R version of Bayesian-ARGOS and the related performance evaluation, please see the companion repository [Bayesian-ARGOS](https://github.com/yuzhengv/Bayesian-ARGOS).
 
 ## Repository Structure
 
