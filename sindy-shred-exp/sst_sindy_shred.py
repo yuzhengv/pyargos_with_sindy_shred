@@ -269,7 +269,7 @@ model = ps.SINDy(
 #     feature_library=ps.PolynomialLibrary(degree=poly_order),
 # )
 
-model.fit(x, t=1 / 52.0, ensemble=False)
+model.fit(x, t=1 / 52.0)
 model.print()
 
 # The identified model play an important role in simulate the trajectory of the system

@@ -184,7 +184,7 @@ model = ps.SINDy(
     feature_library=ps.PolynomialLibrary(degree=poly_order),
 )
 
-model.fit(x, t=1 / 52.0, ensemble=False)
+model.fit(x, t=1 / 52.0)
 
 # %%
 t_train = np.arange(0, 20, 1 / 52.0)

@@ -60,6 +60,18 @@ Then activate the environment:
 conda activate pyargos-shred-dev
 ```
 
+### DGX Spark / aarch64 (CUDA 13)
+
+The conda files above target x86_64. On aarch64 there are no `cu124` torch
+wheels and no `adelie` wheel, so use the uv-based script instead. It installs
+torch from the `cu130` index and builds adelie from the patched source tree in
+`AgenticARGOS/environment/adelie` (set `ADELIE_SRC` if it lives elsewhere):
+
+```bash
+bash environment/create_uv_env_spark.sh
+source environment/.venv-spark/bin/activate
+```
+
 ### Key Dependencies
 
 - Python >= 3.10, NumPy, SciPy, scikit-learn, pandas

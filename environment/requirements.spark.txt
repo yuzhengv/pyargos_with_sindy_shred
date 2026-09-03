@@ -1,0 +1,33 @@
+# Pinned deps for the DGX Spark (aarch64 + cu130). Core scientific/Bayesian
+# pins mirror AgenticARGOS/environment/requirements.vllm.txt (validated on this
+# machine 2026-08); the serving stack (vLLM, AG2) is omitted.
+# adelie is NOT listed here: it has no aarch64 wheel and is built separately
+# from the patched source tree (see create_uv_env_spark.sh).
+numpy==2.2.6
+scipy==1.17.1
+pandas==2.3.3
+xarray==2026.2.0
+matplotlib==3.10.8
+seaborn
+scikit-learn==1.8.0
+statsmodels==0.14.6
+joblib==1.5.3
+sympy
+dill
+ipykernel==7.2.0
+ipywidgets==8.1.8
+tensorboard
+
+# Bayesian stack (argos_bayesian_regression.py hard-codes inference_method="nutpie")
+arviz==0.23.4
+pymc==5.28.0
+bambi==0.16.0
+pytensor==2.38.2
+nutpie==0.16.6
+
+# SINDy-SHRED
+# pysindy 1.x cannot run on numpy 2 (uses np.math), and the Bayesian stack
+# (pytensor 2.38) requires numpy>=2, so the 2.x API is used. The only 1.x-only
+# call in the repo, SINDy.fit(ensemble=False), was the default and was removed.
+pysindy==2.1.0
+torch==2.13.0+cu130

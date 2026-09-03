@@ -30,3 +30,4 @@ sindy-shred-exp/exp-1/*/*
 # Ignore running logs on HPC
 *.out
 stderr-filename
+.venv*/
