@@ -1,0 +1,61 @@
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/torch/cuda/__init__.py:435: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  queued_call()
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 11660.45it/s] [dev:92.7%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 10746.22it/s] [dev:92.7%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 16521.28it/s] [dev:92.9%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 14736.87it/s] [dev:92.9%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 18306.64it/s] [dev:92.9%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 16267.30it/s] [dev:92.9%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 10575.18it/s] [dev:93.8%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 9831.58it/s] [dev:93.8%] 
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 7958.68it/s] [dev:93.9%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 7530.97it/s] [dev:93.9%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 9168.17it/s] [dev:93.9%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 8628.95it/s] [dev:93.9%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 8714.37it/s] [dev:86.9%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 7577.54it/s] [dev:86.9%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 17710.40it/s] [dev:87.0%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 15931.68it/s] [dev:87.0%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 11828.16it/s] [dev:87.0%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 10604.00it/s] [dev:87.0%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 938.18it/s] [dev:94.4%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 931.49it/s] [dev:94.4%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 1281.86it/s] [dev:94.7%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 1269.29it/s] [dev:94.7%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 801.43it/s] [dev:94.8%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 796.69it/s] [dev:94.8%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 749.42it/s] [dev:97.1%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 745.03it/s] [dev:97.1%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 339.86it/s] [dev:97.6%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 338.93it/s] [dev:97.6%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 211.19it/s] [dev:98.2%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 210.81it/s] [dev:98.2%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 850.76it/s] [dev:93.9%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 845.22it/s] [dev:93.9%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 799.13it/s] [dev:94.1%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 794.30it/s] [dev:94.1%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 824.49it/s] [dev:94.1%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 819.09it/s] [dev:94.1%]
+/home/yuzhengz/Manuscripts/My-Papers/Bayesian-ARGOS-Manuscript-CPR/code-repos/pyargos_with_sindy_shred/sindy-shred-exp/results_analysis/rebuttal-latent-models/run_experiment.py:124: RuntimeWarning: overflow encountered in square
+  per_dim = [float(np.mean((z[:n, i] - z_sim[:n, i]) ** 2)) for i in range(z.shape[1])]
+(1400, 64800)
+exp 104: rRMSE eval 0.0465 (stage1 pass), dropout draw 0.0475
+  ba_deg1    valid=True  latentMSE_train=  0.2037 terms= 8 nonlin= 0 | period 1.017 yr, slow decay +0.0046/yr, fast e-fold inf yr
+             +2.76x1 +5.51x2; +0.35 -5.63x1 -2.68x2 +2.85x3; -2.35x1 -5.12x2
+  sindy_deg1 valid=True  latentMSE_train=  0.3933 terms= 7 nonlin= 0 | period 1.023 yr, slow decay -0.0068/yr, fast e-fold inf yr
+             +2.75x1 +5.50x2; -5.87x1 -2.66x2 +2.51x3; -2.35x1 -5.11x2
+  ba_deg3    valid=False latentMSE_train=     nan terms=33 nonlin=23
+             -0.26 +3.63x1 +7.37x2 +1.10x1^2 -1.49x2x3 -2.06x1^3 -5.00x1^2x2 -2.89x1x2^2 -2.52x2^3 -0.31x3^3; -0.09 -10.53x1 -4.82x2 +3.95x3 -2.43x1x3 -1.02x2x3 +5.31x1^3 +6.03x1^2x2 -4.92x1^2x3 +8.43x1x2^2 +3.73x2^3 -2.08x3^3; +0.55 -2.25x1 -5.16x2 -1.51x1^2 +1.92x1x2 +1.17x1x3 +1.13x2^2 +0.69x2x3 +1.82x1^2x2 +1.49x1x2^2 +0.72x3^3
+  sindy_deg3 valid=True  latentMSE_train=  0.4331 terms=39 nonlin=30
+             -1.08 +3.29x1 +6.97x2 +2.30x1^2 +1.06x1x2 +1.12x2^2 -1.47x2x3 +0.80x3^2 -0.98x1^3 -2.79x1^2x2 -1.77x1x2^2 +2.08x1x2x3 -1.85x1x3^2 -2.02x2^3 +1.63x2x3^2 -1.60x3^3; +1.34 -9.32x1 -4.38x2 +4.10x3 -1.23x1^2 -1.26x1x2 -2.14x2^2 +3.56x1^3 +2.46x1^2x2 -3.50x1^2x3 +5.68x1x2^2 +1.89x1x3^2 +3.15x2^3 -0.93x3^3; -3.35x1 -7.03x2 +3.14x1x2 +1.95x2^2 +2.42x1^3 +6.74x1^2x2 +5.16x1x2^2 +2.52x2^3 +0.89x2x3^2
+  done in 36.5 s

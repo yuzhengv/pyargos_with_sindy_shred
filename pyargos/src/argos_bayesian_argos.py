@@ -94,7 +94,7 @@ class BayesianArgos:
             raise ValueError(f"Failed to extract posterior samples: {str(e)}")
 
         # Get coefficient names and means from posterior
-        coef_names = [name for name in ci["index"] if name != "sigma"]
+        coef_names = [name for name in ci["index"] if not name.startswith("sigma")]  # drops sigma and the sampler's transformed sigma_log__
         coef_means = {
             name: float(posterior_samples[name].mean().values)
             for name in coef_names
@@ -968,7 +968,7 @@ class BayesianArgosAnalysis:
             raise ValueError(f"Failed to extract posterior samples: {str(e)}")
 
         # Get coefficient names and means from posterior
-        coef_names = [name for name in ci["index"] if name != "sigma"]
+        coef_names = [name for name in ci["index"] if not name.startswith("sigma")]  # drops sigma and the sampler's transformed sigma_log__
         coef_means = {
             name: float(posterior_samples[name].mean().values)
             for name in coef_names

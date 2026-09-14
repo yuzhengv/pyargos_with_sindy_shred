@@ -1,0 +1,3 @@
+real,imag,decay_rate,half_life_yr,e_folding_yr,kind,omega_rad_yr,period_yr
+0.0,0.0,-0.0,inf,inf,real,0.0,inf
+0.004724740982054946,6.023257518998205,-0.004724740982054946,inf,inf,oscillatory,6.023257518998205,1.043154022115364

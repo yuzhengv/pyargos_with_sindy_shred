@@ -141,6 +141,7 @@ model_file_name = f"model_{iteration}.pth"
 model_file_path = os.path.join(exp_saved_model_dir, model_file_name)
 
 shred.load_state_dict(torch.load(model_file_path))
+shred.eval()  # inference mode: decoder dropout off, otherwise every decode is a fresh random draw
 
 # %%
 # ! -------------------- Analysis based on sequence model and forecaster --------------------

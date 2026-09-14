@@ -1,0 +1,15 @@
+exp 35 ok
+exp 40 ok
+exp 47 ok
+exp 49 ok
+exp 51 ok
+exp 80 ok
+exp 32 ok
+exp 91 ok
+exp 96 ok
+exp 98 ok
+exp 102 ok
+exp 114 ok
+exp 105 ok
+exp 142 ok
+150 experiments -> tables/experiments.csv, tables/terms.csv, tables/summary.md
