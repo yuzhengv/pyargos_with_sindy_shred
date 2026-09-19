@@ -31,3 +31,6 @@ sindy-shred-exp/exp-1/*/*
 *.out
 stderr-filename
 .venv*/
+
+# Retrained latent-dimension weights (1.4 GB; regenerable with rebuttal-latent-dim2/run_batch.sh)
+sindy-shred-exp/results_analysis/rebuttal-latent-dim2/models/*.pth

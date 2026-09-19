@@ -1,0 +1,233 @@
+{
+ "iteration": 4,
+ "seed": 0,
+ "degrees": [
+  1
+ ],
+ "latent_dim": 2,
+ "model_path": "models/model_4_r2.pth",
+ "recon_rrmse_test_dropout_draw": 0.058449238538742065,
+ "recon_rrmse_test_eval": 0.0574377067387104,
+ "stage1_pass_eval": false,
+ "latent_range_train": [
+  0.17093153297901154,
+  0.12326124310493469
+ ],
+ "esindy_shape": [
+  10,
+  10,
+  2
+ ],
+ "esindy_nonzero_terms_mean": 20,
+ "models": {
+  "ba_deg1": {
+   "method": "Bayesian-ARGOS",
+   "degree": 1,
+   "fit_seconds": 5.8,
+   "n_candidates": 3,
+   "terms": [
+    [
+     "",
+     "x1",
+     "x2"
+    ],
+    [
+     "",
+     "x1",
+     "x2"
+    ]
+   ],
+   "coefficients": [
+    [
+     -0.1861008650583431,
+     -0.7565570137360265,
+     3.709772667931972
+    ],
+    [
+     -2.414155975889174,
+     -8.462284229239359,
+     0.7727160479837926
+    ]
+   ],
+   "n_terms": 6,
+   "n_nonlinear_terms": 0,
+   "latent_mse_train": {
+    "per_dim": [
+     0.24586453556181576,
+     0.5386570977746061
+    ],
+    "overall": 0.39226081666821094,
+    "n_compared": 999,
+    "finite": true
+   },
+   "latent_mse_test": {
+    "per_dim": [
+     0.6168308709241134,
+     1.0423576994741195
+    ],
+    "overall": 0.8295942851991165,
+    "n_compared": 317,
+    "finite": true
+   },
+   "valid": true,
+   "forecast": {
+    "RMSE_0_100": 1.598841905593872,
+    "RMSE_normalized_0_100": 0.08910998702049255,
+    "RMSE_100_200": 3.0698540210723877,
+    "RMSE_normalized_100_200": 0.17002952098846436,
+    "RMSE_200_275": 3.7194440364837646,
+    "RMSE_normalized_200_275": 0.20426219701766968,
+    "RMSE_0_275": 2.851219892501831,
+    "RMSE_normalized_0_275": 0.15790094435214996
+   },
+   "affine_linear": true,
+   "A": [
+    [
+     -0.7565570137360265,
+     3.709772667931972
+    ],
+    [
+     -8.462284229239359,
+     0.7727160479837926
+    ]
+   ],
+   "b": [
+    -0.1861008650583431,
+    -2.414155975889174
+   ],
+   "modal": {
+    "max_real_eig": 0.008079517123883087,
+    "equilibrium": [
+     -0.28602993616018274,
+     -0.00816683176950578
+    ],
+    "modes": [
+     {
+      "real": 0.008079517123883087,
+      "imag": 5.550538867315359,
+      "decay_rate": -0.008079517123883087,
+      "half_life_yr": Infinity,
+      "e_folding_yr": Infinity,
+      "kind": "oscillatory",
+      "omega_rad_yr": 5.550538867315359,
+      "period_yr": 1.1319955516712898
+     }
+    ]
+   },
+   "modal_posterior": {
+    "osc_period_yr": {
+     "q05": 1.1038941688852384,
+     "median": 1.1339590604695224,
+     "q95": 1.164400311955033
+    },
+    "osc_decay_rate": {
+     "q05": -0.15313754225059473,
+     "median": -0.011824117510930902,
+     "q95": 0.13604293551144564
+    },
+    "real_decay_rate": {
+     "q05": NaN,
+     "median": NaN,
+     "q95": NaN
+    },
+    "max_real_eig": {
+     "q05": -0.13604293551144575,
+     "median": 0.011824117510930902,
+     "q95": 0.1531375422505947
+    },
+    "p_stable": 0.453,
+    "p_slow_mode_decaying": 0.453
+   }
+  },
+  "sindy_deg1": {
+   "method": "SINDy",
+   "degree": 1,
+   "fit_seconds": 0.0,
+   "n_candidates": 3,
+   "terms": [
+    [
+     "x2"
+    ],
+    [
+     "1",
+     "x1"
+    ]
+   ],
+   "coefficients": [
+    [
+     3.6361515522003174
+    ],
+    [
+     -2.370687246322632,
+     -8.288844108581543
+    ]
+   ],
+   "n_terms": 3,
+   "n_nonlinear_terms": 0,
+   "latent_mse_train": {
+    "per_dim": [
+     0.24212511944710946,
+     0.5015706183902632
+    ],
+    "overall": 0.3718478689186863,
+    "n_compared": 999,
+    "finite": true
+   },
+   "latent_mse_test": {
+    "per_dim": [
+     0.6207581362623366,
+     0.956929016720434
+    ],
+    "overall": 0.7888435764913853,
+    "n_compared": 317,
+    "finite": true
+   },
+   "valid": true,
+   "forecast": {
+    "RMSE_0_100": 1.6275326013565063,
+    "RMSE_normalized_0_100": 0.09070900082588196,
+    "RMSE_100_200": 3.1799168586730957,
+    "RMSE_normalized_100_200": 0.17612551152706146,
+    "RMSE_200_275": 3.7764554023742676,
+    "RMSE_normalized_200_275": 0.20739316940307617,
+    "RMSE_0_275": 2.920581817626953,
+    "RMSE_normalized_0_275": 0.1617421805858612
+   },
+   "affine_linear": true,
+   "A": [
+    [
+     0.0,
+     3.6361515522003174
+    ],
+    [
+     -8.288844108581543,
+     0.0
+    ]
+   ],
+   "b": [
+    0.0,
+    -2.370687246322632
+   ],
+   "modal": {
+    "max_real_eig": 0.0,
+    "equilibrium": [
+     -0.2860093898820259,
+     -0.0
+    ],
+    "modes": [
+     {
+      "real": 0.0,
+      "imag": 5.489944751212459,
+      "decay_rate": -0.0,
+      "half_life_yr": Infinity,
+      "e_folding_yr": Infinity,
+      "kind": "oscillatory",
+      "omega_rad_yr": 5.489944751212459,
+      "period_yr": 1.144489715637291
+     }
+    ]
+   }
+  }
+ },
+ "seconds": 9.9
+}

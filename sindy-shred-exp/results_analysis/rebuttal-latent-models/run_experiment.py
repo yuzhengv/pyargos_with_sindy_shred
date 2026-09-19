@@ -73,14 +73,17 @@ def parse_args():
     p.add_argument("--num-sensors", type=int, default=250)
     p.add_argument("--out", default=os.path.join(HERE, "results"))
     p.add_argument("--degrees", default="1,3", help="library degrees to run for both methods")
+    p.add_argument("--latent-dim", type=int, default=3, help="latent dimension of the network (3 for the manuscript's experiments)")
+    p.add_argument("--model-path", default=None, help="weights file (default: <exp-root>/exp-1/saved-model/model_<it>.pth)")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--skip-dropout-rrmse", action="store_true")
     return p.parse_args()
 
 
 # ----------------------------------------------------------------------------- helpers
-def to_matrix(terms, coeffs, d=LATENT_DIM):
+def to_matrix(terms, coeffs, d=None):
     """(A, b) of an affine-linear model given per-equation term names; None if any term is nonlinear."""
+    d = d or len(terms)
     A, b = np.zeros((d, d)), np.zeros(d)
     for i, (ts, cs) in enumerate(zip(terms, coeffs)):
         for t, c in zip(ts, cs):
@@ -182,6 +185,7 @@ def ba_modes_over_draws(ba, terms, coeffs, n_draws=1000, seed=0):
     A0, _ = to_matrix(terms, coeffs)
     if A0 is None:
         return None
+    d = len(terms)
     eqs = sorted(ba.results.keys())
     posts = [az.extract(ba.results[eq]["results"]) for eq in eqs]
     n_avail = min(int(p.sizes["sample"]) for p in posts)
@@ -189,7 +193,7 @@ def ba_modes_over_draws(ba, terms, coeffs, n_draws=1000, seed=0):
     idx = rng.choice(n_avail, size=min(n_draws, n_avail), replace=False)
     rows = []
     for j in idx:
-        A = np.zeros((LATENT_DIM, LATENT_DIM))
+        A = np.zeros((d, d))
         for i, p in enumerate(posts):
             for v in p.data_vars:
                 nm = v.replace("`", "").replace(" ", "")
@@ -212,8 +216,8 @@ def sindy_fit(z_train_n, degree):
                      differentiation_method=ps.differentiation.FiniteDifference(),
                      feature_library=ps.PolynomialLibrary(degree=degree))
     model.fit(z_train_n, t=DT)
-    names = [n.replace(" ", "").replace("x0", "X1").replace("x1", "X2").replace("x2", "X3").lower()
-             for n in model.get_feature_names()]           # pysindy 'x0 x1', 'x0^2' -> 'x1x2', 'x1^2'
+    import re
+    names = [re.sub(r"x(\d+)", lambda mm: f"x{int(mm.group(1)) + 1}", n.replace(" ", "")) for n in model.get_feature_names()]  # pysindy x0.. -> x1..
     names = ["1" if n == "1" else n for n in names]
     C = model.coefficients()
     terms = [[names[j] for j in range(len(names)) if C[i, j] != 0] for i in range(C.shape[0])]
@@ -228,7 +232,7 @@ def safe_sim(fn):
             x = np.asarray(fn(), dtype=float)
         return x
     except Exception as e:  # divergence, LSODA failure, overflow
-        return np.full((1, LATENT_DIM), np.nan)
+        return np.full((1, 3), np.nan)
 
 
 def load_experiment(a, summary):
@@ -253,11 +257,13 @@ def load_experiment(a, summary):
     t32 = lambda arr: torch.tensor(arr, dtype=torch.float32).to(device)  # noqa: E731
     train_ds = TimeSeriesDataset(t32(all_in[train_idx]), t32(X[train_idx + LAGS - 1]))
     test_ds = TimeSeriesDataset(t32(all_in[test_idx]), t32(X[test_idx + LAGS - 1]))
-    library_dim = sindy.library_size(LATENT_DIM, 3, False, True)
+    r = getattr(a, "latent_dim", LATENT_DIM)
+    library_dim = sindy.library_size(r, 3, False, True)
     shred = sindy_shred.SINDy_SHRED(
-        a.num_sensors, m, hidden_size=LATENT_DIM, hidden_layers=2, l1=350, l2=400, dropout=0.1,
+        a.num_sensors, m, hidden_size=r, hidden_layers=2, l1=350, l2=400, dropout=0.1,
         library_dim=library_dim, poly_order=3, include_sine=False, dt=DT * 0.1, layer_norm=False).to(device)
-    shred.load_state_dict(torch.load(os.path.join(a.exp_root, "exp-1", "saved-model", f"model_{it}.pth")))
+    model_path = getattr(a, "model_path", None) or os.path.join(a.exp_root, "exp-1", "saved-model", f"model_{it}.pth")
+    shred.load_state_dict(torch.load(model_path))
 
     # ---- stage-1 quantity: network test reconstruction rRMSE ----
     truth = sc.inverse_transform(test_ds.Y.detach().cpu().numpy())
@@ -292,7 +298,7 @@ def main():
     data_path = a.data or os.path.join(a.exp_root, "Data", "SST_data.mat")
     random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed); torch.cuda.manual_seed(a.seed)
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    summary = {"iteration": it, "seed": a.seed, "degrees": degrees}
+    summary = {"iteration": it, "seed": a.seed, "degrees": degrees, "latent_dim": a.latent_dim, "model_path": a.model_path}
 
     shred, sc, z_train_n, z_test_n, lo, hi, truth = load_experiment(a, summary)
     data_path = a.data or os.path.join(a.exp_root, "Data", "SST_data.mat")

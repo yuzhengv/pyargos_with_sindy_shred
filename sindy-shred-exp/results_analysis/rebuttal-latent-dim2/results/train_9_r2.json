@@ -1,0 +1,18 @@
+{
+ "iteration": 9,
+ "latent_dim": 2,
+ "seed": 0,
+ "epochs": 600,
+ "recon_rrmse_test_eval": 0.04407535120844841,
+ "recon_rrmse_test_train_mode_draw": 0.04504992812871933,
+ "stage1_pass_eval": true,
+ "validation_errors": [
+  0.2535283863544464,
+  0.22716738283634186,
+  0.22246862947940826,
+  0.21924178302288055,
+  0.21999073028564453,
+  0.22131836414337158
+ ],
+ "seconds": 204.2
+}

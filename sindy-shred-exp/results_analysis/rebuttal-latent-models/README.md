@@ -28,7 +28,10 @@ horizons and metric definitions) and adds:
 | for Bayesian-ARGOS degree 1: the same modal quantities over 1000 posterior draws, with 5/50/95 % quantiles, P(stable), P(annual mode decaying) | `modes_draws_ba_deg1.csv`, `summary.json` |
 | selection quantities: network test rRMSE (eval mode, and one dropout-active draw as the submitted batch computed it), training latent MSE per dimension, validity flag, test latent MSE, decoded-forecast RMSE over the Fig. 8a horizons (0–100, 100–200, 200–275, 0–275 weeks) | `summary.json` |
 
-Tags: `ba_deg1`, `ba_deg3`, `sindy_deg1`, `sindy_deg3`. Simulations that
+Tags: `ba_deg1`, `ba_deg3`, `sindy_deg1`, `sindy_deg3`. Since 2026-09-18 the script also
+takes `--latent-dim r` and `--model-path <weights>` so that it can identify the latent
+dynamics of a network with another latent dimension (used by `../rebuttal-latent-dim2/`
+for the r = 2 networks); defaults reproduce the manuscript's r = 3 experiments. Simulations that
 diverge or fail are recorded as non-finite and flagged invalid, never dropped.
 
 ## Selection flags (`collect.py`)
