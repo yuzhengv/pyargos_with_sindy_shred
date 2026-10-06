@@ -1,0 +1,73 @@
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/torch/cuda/__init__.py:435: UserWarning: 
+    Found GPU0 NVIDIA GB10 which is of cuda capability 12.1.
+    Minimum and Maximum cuda capability supported by this version of PyTorch is
+    (8.0) - (12.0)
+    
+  queued_call()
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 6932.79it/s] [dev:95.6%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 6666.58it/s] [dev:95.6%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 2693.48it/s] [dev:96.2%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 2651.54it/s] [dev:96.2%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 18242.85it/s] [dev:95.4%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 16456.03it/s] [dev:95.4%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 6909.85it/s] [dev:97.2%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 6637.59it/s] [dev:97.2%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 1108.36it/s] [dev:97.3%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 1100.46it/s] [dev:97.3%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 1584.75it/s] [dev:97.2%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 1569.04it/s] [dev:97.2%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 6261.82it/s] [dev:96.7%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 6039.16it/s] [dev:96.7%]
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 3451.30it/s] [dev:97.4%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 3369.96it/s] [dev:97.4%]
+/home/yuzhengz/anaconda3/envs/env_dgx_spark/lib/python3.12/site-packages/adelie/matrix.py:648: UserWarning: Detected matrix to be C-contiguous. Performance may improve with F-contiguous matrix.
+  warnings.warn(
+  0%|          | 0/1 [00:00:00<?, ?it/s]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 17080.88it/s] [dev:96.6%]100%|[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m[1;32m█[0m| 1/1 [00:00:00<00:00:00, 15393.85it/s] [dev:96.6%]
+/home/yuzhengz/Manuscripts/My-Papers/Bayesian-ARGOS-Manuscript-CPR/code-repos/pyargos_with_sindy_shred/sindy-shred-exp/results_analysis/rebuttal-posterior-forecast/plot_bands.py:39: UserWarning: The figure layout has changed to tight
+  fig.tight_layout()
+/home/yuzhengz/Manuscripts/My-Papers/Bayesian-ARGOS-Manuscript-CPR/code-repos/pyargos_with_sindy_shred/sindy-shred-exp/results_analysis/rebuttal-posterior-forecast/plot_bands.py:39: UserWarning: The figure layout has changed to tight
+  fig.tight_layout()
+(1400, 64800)
+loaded exp 91: test weeks 317, ocean points 44219, stage-1 rRMSE 0.0431  [3s]
+dz1/dt = -0.980 +8.165 x2 -4.198 x3
+dz2/dt = +0.550 -3.412 x2 +6.151 x3
+dz3/dt = +0.952 -8.190 x2 +3.427 x3
+Bayesian-ARGOS done [9s]
+S9 sensors: [1304, 38340, 32807, 16768, 30449, 35625, 28929, 21934, 22190, 23804, 20406, 21156, 26508, 9166, 35599, 19737, 24613, 7490]
+[identified] 1000 draws; terms per equation: [3, 3, 3]
+  100/1000 draws [35s]
+  200/1000 draws [59s]
+  300/1000 draws [83s]
+  400/1000 draws [108s]
+  500/1000 draws [132s]
+  600/1000 draws [156s]
+  700/1000 draws [181s]
+  800/1000 draws [205s]
+  900/1000 draws [230s]
+  1000/1000 draws [254s]
+S9 mean RMSE (point) 0.1043, mean coverage 0.376
+[allterms] 1000 draws; terms per equation: [3, 3, 3]
+  100/1000 draws [287s]
+  200/1000 draws [311s]
+  300/1000 draws [336s]
+  400/1000 draws [361s]
+  500/1000 draws [385s]
+  600/1000 draws [410s]
+  700/1000 draws [435s]
+  800/1000 draws [459s]
+  900/1000 draws [484s]
+  1000/1000 draws [509s]
+       set   t  rmse_point_model  rmse_mean_of_draws_forecast  rmse_draws_q05  rmse_draws_q50  rmse_draws_q95  field_coverage_90  field_band_width_90_degC  n_draws_ok  n_draws_failed
+identified  50          0.671399                     0.671719        0.671246        0.677511        0.719278           0.143038                  0.266750        1000               0
+identified 100          0.740324                     0.740458        0.739499        0.752636        0.867298           0.203284                  0.454510        1000               0
+identified 150          0.671075                     0.669553        0.663144        0.700153        0.995519           0.340306                  0.725449        1000               0
+identified 200          0.717871                     0.712465        0.686903        0.784217        1.290124           0.478459                  1.134096        1000               0
+identified 250          0.846458                     0.859650        0.827067        0.930509        1.578380           0.506253                  1.384410        1000               0
+  allterms  50          0.671399                     0.671719        0.671246        0.677511        0.719278           0.143038                  0.266750        1000               0
+  allterms 100          0.740324                     0.740458        0.739499        0.752636        0.867298           0.203284                  0.454510        1000               0
+  allterms 150          0.671075                     0.669553        0.663144        0.700153        0.995519           0.340306                  0.725449        1000               0
+  allterms 200          0.717871                     0.712465        0.686903        0.784217        1.290124           0.478459                  1.134096        1000               0
+  allterms 250          0.846458                     0.859650        0.827067        0.930509        1.578380           0.506253                  1.384410        1000               0
+done [515s]
