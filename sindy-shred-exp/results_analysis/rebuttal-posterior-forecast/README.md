@@ -7,6 +7,12 @@
 > coverage stated), not predictive intervals; the Fig. S9 bands are not used in the
 > manuscript (figure kept here). The manuscript swap is deferred to the final
 > amendment step; the submitted figure files are unchanged.
+>
+> **Update 2026-10-14:** the Fig. 8b band panel (Fig. 9b of the revision) is redrawn
+> in the house style from `results/latent_bands_91.npz` by
+> `../rebuttal-sst-forecast-figs/make_fig9_panels.py` (see the row below); the band
+> reproduces the half-widths of the table in Results (0.07/0.03/0.04 at week 52,
+> 1.48/0.79/0.99 at week 1040).
 
 Referee 1 wrote: "Bayesian-ARGOS presumably returns error bars on the model
 coefficients, but those don't factor into generating projections or the
@@ -57,6 +63,7 @@ decoded RMSE as a function of lead time.
 | `posterior_forecast.py` | one experiment: Bayesian-ARGOS fit, point forecast, posterior draws, simulation, decoding, quantiles, coverage, figures | ~10 min for 1,000 draws (Bayesian-ARGOS itself ~6 s) |
 | `plot_bands.py` | band-aware versions of the Fig. 8b and Fig. S9 plotting blocks, plus the RMSE-versus-lead-time panel | seconds |
 | `run_all.sh` | runs exp 91 with 1,000 draws, log in `results/log_91.txt` | ~10 min |
+| `../rebuttal-sst-forecast-figs/make_fig9_panels.py` | draws the revised Fig. 9b in the house style from `results/latent_bands_91.npz` (GRU latent trajectory, posterior-mean simulation, 5 to 95 % band over the 1,000 draws), composed into `imgs/sst_application.pdf` by `compose_fig9.sh` in that folder | seconds |
 
 ```bash
 conda activate env_dgx_spark

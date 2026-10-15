@@ -7,6 +7,18 @@
 > (`results_analysis/imgs-2/zoomed_comparison_18.pdf`, `comparison_plot_ba_18.pdf`,
 > and `multi_sensor_forecast_18.pdf` in the manuscript repository) are unchanged
 > on disk. The swap in the manuscript is deferred to the final amendment step.
+>
+> **Update 2026-10-14:** the revision figures are regenerated in the house style
+> (`../plot-style/house.mplstyle`; plotting standard, blocks M9 and S-F, decisions
+> D1, D3, D4, D8) from the stored arrays by the six scripts added to the table
+> below, into `figures/house/`: `sst_application.pdf` (revised Fig. 9, experiment
+> 91: RMSE violins, latent trajectories with the 90 % posterior band, global maps),
+> `multi_sensor_forecast_91.pdf` (Supplementary Fig. S16),
+> `latent_space_{123,18,80}.pdf` (Supplementary latent-space figures) and
+> `sindy_shred_integration.pdf` (revised Fig. 8, the schematic with the experiment
+> 91 equations). Copies under the same names sit in the manuscript repository
+> (`imgs/`, `si-plots/`, `reply-to-reviewers/Figures/`). The earlier figures in
+> `figures/` are unchanged.
 
 Referee 1 asked why "the SST dataset suddenly only covers the Eastern Hemisphere"
 in Fig. 8 while Fig. 7 shows the whole planet. Nothing in the pipeline is
@@ -61,6 +73,12 @@ copied verbatim.
 | `plot_sensors.py` | `plot_multiple_sensor_predictions` + CLI over `results/sensor_trajectories_<it>.npz` | seconds |
 | `run_all.sh` | eval-mode run (the revision figures) then a `--dropout-active` run (comparison only, `_dropout` suffix on every output) | ~3 min |
 | `make_readme_results.py` | rewrites the Results section below from `results/` | seconds |
+| `make_fig9_panels.py` | revised Fig. 9 panels in the house style: a, RMSE violins from `../rebuttal-latent-models/tables/experiments.csv` (degree-1, stage1 and valid: 87 Bayesian-ARGOS and 67 SINDy experiments; means 0.921/1.014/1.297 and 0.994/1.221/1.617 °C); b, experiment 91 latent trajectories with the 90 % band from `../rebuttal-posterior-forecast/results/latent_bands_91.npz`; c, global maps from `results/fields_91.npz`, RMSE checked against `results/rmse_91.csv` (0.67/0.74/0.67/0.72/0.84 °C); canvases 8.3, 9.7 and 18 in wide (k = 2.5), saved to `figures/house/fig9{a,b,c}.pdf` | 3 s |
+| `compose_fig9.sh` | generates a standalone TeX file and includes the three panels at scale 0.4 (a left, b right, c below) in a 183 mm box with a 1 mm border: `figures/house/sst_application.pdf`, 185 x 163 mm | seconds |
+| `make_si_sensor_fig.py` | Supplementary Fig. S16 (18 held-out sensors of experiment 91, eval mode, `results/sensor_trajectories_91.npz`) in the house style: 3 x 6 grid, one vertical scale (full data range), RMSE per panel checked against `results/sensor_rmse_91.csv` (mean 0.104, normalised units); canvas 24.3 x 12.2 in for a final width of 247 mm (sidewaysfigure) | 1 s |
+| `make_si_latent_figs.py` | Supplementary latent-space panels, 18 in canvases: experiments 123 and 18 (a, GRU latent trajectory against the posterior-mean simulation over the training period; b, global maps with RMSE from `results/rmse_<it>.csv`) and experiment 80 (overlay only, quasi-static third coordinate) | 6 s |
+| `compose_si_latent.sh` | composes them at scale 0.4 into `figures/house/latent_space_<it>.pdf` (183 mm plus a 1 mm border) | seconds |
+| `compose_fig8_schematic.sh` | revised Fig. 8: covers the three old equation lines in the "Latent Dynamical System" box of `schematic-plots/pyargos_with_sindy_shred.pdf` with the box fill colour and typesets the experiment 91 posterior means (two decimals) in sans-serif mathematics (TikZ, helvet, sfmath, Helvetica minus sign): `figures/house/sindy_shred_integration.pdf` | seconds |
 
 ```bash
 conda activate env_dgx_spark
@@ -68,6 +86,16 @@ cd sindy-shred-exp/results_analysis/rebuttal-sst-forecast-figs
 ./run_all.sh ~/Projects/pyargos_with_sindy_shred/sindy-shred-exp   # checkout holding Data/ and exp-1/
 python plot_fields.py --lon 0,180 --out figures/crop_comparison_18.pdf   # redraw without re-running
 python make_readme_results.py                                            # refresh the Results tables
+```
+
+House-style revision figures (2026-10-14; no data root needed, stored arrays only):
+
+```bash
+python make_fig9_panels.py && ./compose_fig9.sh        # figures/house/sst_application.pdf (revised Fig. 9)
+python make_si_sensor_fig.py                           # figures/house/multi_sensor_forecast_91.pdf (Fig. S16)
+python make_si_latent_figs.py && ./compose_si_latent.sh   # figures/house/latent_space_{123,18,80}.pdf
+./compose_fig8_schematic.sh <manuscript-repo>/schematic-plots/pyargos_with_sindy_shred.pdf \
+    figures/house/sindy_shred_integration.pdf          # revised Fig. 8
 ```
 
 `Data/SST_data.mat`, `exp-1/sensor-location/sensor_location_18.npy` and

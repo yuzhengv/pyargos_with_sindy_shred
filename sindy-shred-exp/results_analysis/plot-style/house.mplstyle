@@ -1,0 +1,47 @@
+# House style for the matplotlib figures of the revised manuscript (plotting
+# standard: reply-to-reviewers/Notes/plotting-standard.md, sections 4 and 5.2).
+# Authoring route (4.2.3, D1): canvas = 2.5 x final width (18 in for a 183 mm
+# figure), sizes x 2.5: tags 20 pt bold, text 17.5 pt, tick labels 16 pt,
+# ticks 7.1 pt (1 mm final), spines 1.25 pt (0.5 pt final).
+font.family: sans-serif
+font.sans-serif: Helvetica, Arial, Nimbus Sans, Liberation Sans, DejaVu Sans
+mathtext.fontset: custom
+mathtext.rm: sans
+mathtext.it: sans:italic
+mathtext.bf: sans:bold
+pdf.fonttype: 42
+ps.fonttype: 42
+font.size: 17.5
+axes.titlesize: 17.5
+axes.titleweight: normal
+figure.titlesize: 17.5
+figure.titleweight: normal
+axes.labelsize: 17.5
+xtick.labelsize: 16
+ytick.labelsize: 16
+legend.fontsize: 17.5
+legend.title_fontsize: 17.5
+legend.frameon: False
+axes.spines.top: False
+axes.spines.right: False
+axes.linewidth: 1.25
+axes.edgecolor: black
+axes.labelcolor: black
+axes.grid: False
+axes.facecolor: white
+figure.facecolor: white
+savefig.facecolor: white
+xtick.direction: out
+ytick.direction: out
+xtick.major.size: 7.1
+ytick.major.size: 7.1
+xtick.major.width: 1.25
+ytick.major.width: 1.25
+xtick.minor.visible: False
+ytick.minor.visible: False
+xtick.color: black
+ytick.color: black
+lines.linewidth: 2.5
+lines.markersize: 7
+savefig.dpi: 600
+figure.dpi: 100
