@@ -65,6 +65,7 @@ python collect.py
 python make_fig8a.py                    # Fig. 8a from tables/experiments.csv -> figures/rmse_comparison_violin_plot.pdf
 python run_decoder_ablation.py --iteration 18 --exp-root ...   # freeze each latent coordinate at decode time (~20 s)
 python collect_ablation.py              # -> tables/decoder_ablation.csv, section appended to tables/summary.md
+python classify_third_mode.py           # -> tables/third_mode_classes.csv, tables/third_mode_summary.md, figures/third_mode_classes.pdf (~3 s)
 ```
 
 ### Running the batch
@@ -188,3 +189,36 @@ latent spaces, a quarter have a nearly redundant one, and dynamical triviality o
 coordinate says nothing about its role in the representation. Exp 91 (the proposed
 highlighted case): freezing its dynamically slaved $z_1$ costs 117 %, $z_2$ 25 %,
 $z_3$ 12 %.
+
+## Third-mode classes (`classify_third_mode.py`), 2026-10-27
+
+> **Status:** done 2026-10-27. Outputs: `tables/third_mode_classes.csv` (one row per
+> valid Bayesian-ARGOS model), `tables/third_mode_summary.md` (per-class table),
+> `figures/third_mode_classes.pdf`. Reads only `tables/experiments.csv` and
+> `tables/decoder_ablation.csv`; nothing re-run, no package code touched. Runtime ~3 s.
+
+Question (Yuzheng, 2026-10-27, from Referee 1 Point 8's reading that the pipeline
+rediscovers a known dynamics): beyond the typical slowly varying level, what do the
+other valid models find? Every valid degree-1 Bayesian-ARGOS model (87) is sorted by
+the position of the 90 % credible interval (5 to 95 % quantiles over the 1000 posterior
+draws) of the decay rate of its real eigenvalue relative to zero: **decays** if the
+interval lies above zero, **grows** if below, **level** if it contains zero. The [0, 0]
+interval of an eigenvalue that is zero by structure (one latent coordinate on no
+right-hand side: experiments 17, 91, 129, 145) counts as containing zero.
+
+Result: level 72, decays 13, grows 2. The level class has |decay rate| < 0.05 /yr in
+51 and an e-folding time of 20 years or more in 62. The decays class has e-folding
+times of 0.7 to 13.3 years (under two years in 7), fits the training trajectory
+better (median latent MSE 0.115 against 0.276), forecasts slightly worse (median
+0–275 wk RMSE 1.03 against 0.93 °C) and its least-needed decoder coordinate is nearly
+redundant (ratio < 1.05) in 7 of 13 against 13 of 72. The grows class has e-folding
+times of 8.6 and 11.3 years. The annual pair is the same in all classes: period within
+1.00 ± 0.05 yr in 69/12/2, sign of its decay undetermined in 69/11/2.
+
+Two corrections to earlier counts follow from the inclusive criterion. "Credible
+interval containing zero in 68" (summary above, reply R1.8, main text of 2026-10-27)
+used strict inequality and excluded the 4 structural zeros, among them the highlighted
+experiment 91; the inclusive count is 72. Likewise the annual mode's "sign undetermined
+in 81 of 87" is 82 inclusive (experiment 17's oscillator has no self-terms, so its real
+part is zero in every draw). Of the 8 fast modes by the point estimate (e-folding < 2 yr),
+7 are in the decays class; experiment 71 (0.8 yr) has an interval reaching zero.
