@@ -66,6 +66,7 @@ python make_fig8a.py                    # Fig. 8a from tables/experiments.csv ->
 python run_decoder_ablation.py --iteration 18 --exp-root ...   # freeze each latent coordinate at decode time (~20 s)
 python collect_ablation.py              # -> tables/decoder_ablation.csv, section appended to tables/summary.md
 python classify_third_mode.py           # -> tables/third_mode_classes.csv, tables/third_mode_summary.md, figures/third_mode_classes.pdf (~3 s)
+python ensemble_eigenvalues_figure.py   # -> figures/ensemble_eigenvalues.pdf, main-text candidate (annual period + the S16 panel) (~3 s)
 ```
 
 ### Running the batch
@@ -222,3 +223,20 @@ experiment 91; the inclusive count is 72. Likewise the annual mode's "sign undet
 in 81 of 87" is 82 inclusive (experiment 17's oscillator has no self-terms, so its real
 part is zero in every draw). Of the 8 fast modes by the point estimate (e-folding < 2 yr),
 7 are in the decays class; experiment 71 (0.8 yr) has an interval reaching zero.
+
+## Ensemble eigenvalue figure (`ensemble_eigenvalues_figure.py`), 2026-10-31
+
+> **Status:** done 2026-10-31. Output: `figures/ensemble_eigenvalues.pdf`, copied to
+> the manuscript repository as `imgs/sst_ensemble_eigenvalues.pdf` (candidate main-text
+> Fig. 10). Reads `tables/experiments.csv` through `classify_third_mode.load()`;
+> nothing re-run, no package code touched. Runtime ~3 s.
+
+Question (second-opinion review of the Section 2.5 redraft, 2026-10-31): the ensemble
+finding, a shared annual period and a slow mode sorted into three classes by its
+posterior, is supported only by Supplementary Fig. S16 and Table S3, so the main text
+has no figure for it. The script draws, for every valid Bayesian-ARGOS model and in
+one model order (sorted by the decay rate of the real mode), **a** the period of the
+annual mode with its 90 % credible interval (`osc_period_yr_q05/q95`) and the
+1.00 +/- 0.05 year band (83 of 87 inside), and **b** the panel of
+`figures/third_mode_classes.pdf` unchanged. Panel a is coloured by the class of
+panel b, so it also shows that the annual period does not differ between the classes.
