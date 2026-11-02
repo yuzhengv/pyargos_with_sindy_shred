@@ -16,11 +16,16 @@ re-decoded:
      computed from the stored fields as plot_fields.plot_zoomed_comparison
      does and checked against results/rmse_91.csv (global, eval mode).
 
-Canvases (k = 2.5 route, D1): a 8.3 x 9.4 in, b 9.7 x 9.4 in (together the
-18 in canvas of a 183 mm figure), c 18 x 6.4 in. Each panel is saved with a
-0.02 in pad and included at scale 0.4 by compose_fig9.sh, so the text sizes
-set in plot-style/house.mplstyle come out at 8 pt (tags), 7 pt (titles, axis
-titles, legends) and 6.5 pt (tick labels) at the final width of 183 mm.
+Canvases (k = 2.5 route, D1): a 8.3 x 7.6 in, b 9.7 x 7.6 in (together the
+18 in canvas of a 183 mm figure; both saved as the whole canvas with the same
+axes box, TOP_BOX, so that their axes and legends sit on one level), c 18 x
+6.6 in with the two colour bars horizontal below the maps, so that the five
+maps take the full width (Yuzheng, 2026-11-01: a and b smaller and aligned,
+c larger, c without a title, wider gaps between the axis titles and the
+legends). Panel c is saved with a 0.02 in pad; every panel is included at
+scale 0.4 by compose_fig9.sh, so the text sizes set in plot-style/house.mplstyle
+come out at 8 pt (tags), 7 pt (titles, axis titles), 9 pt (legends, hs.PT
+"legend") and 6.5 pt (tick labels) at the final width of 183 mm.
 
 Run:  python make_fig9_panels.py            (writes figures/house/fig9{a,b,c}.pdf)
 """
@@ -48,12 +53,16 @@ TABLE = os.path.join(RA, "rebuttal-latent-models", "tables", "experiments.csv")
 BANDS = os.path.join(RA, "rebuttal-posterior-forecast", "results", "latent_bands_91.npz")
 RANGES = [(0, 100), (100, 200), (200, 275)]
 RANGE_LABELS = ["0 to 100", "100 to 200", "200 to 275"]
-PAD = 0.02           # tight-bbox pad (in) of every composed panel
+PAD = 0.02           # tight-bbox pad (in) of panel c
 LW = 1.8             # line width on the canvas (0.72 pt final) for the dense latent series
+TOP_H = 7.6          # canvas height (in) of panels a and b: 76 mm final
+TOP_BOX = dict(bottom=0.33, top=0.93)     # the axes box of a and b (figure fractions): same levels in both
+LEGEND_TOP = 0.205   # top of the legend of a and b (figure fraction): 0.35 in below the x-axis title; b's three rows end 0.1 in above the canvas edge
+CBAR_ROW = 0.11      # height of the colour-bar row of c relative to a map row
 
 
-def save_panel(fig, path):
-    hs.save(fig, path, pad_inches=PAD)
+def save_panel(fig, path, tight=True):
+    hs.save(fig, path, pad_inches=PAD, tight=tight)
     plt.close(fig)
     print("saved", path)
 
@@ -73,12 +82,16 @@ def violin_table(table=TABLE):
     return long, counts
 
 
-def panel_a(out, width_in=8.3, height_in=9.4, print_means=True):
+def panel_a(out, width_in=8.3, height_in=TOP_H, print_means=True):
     long, counts = violin_table()
-    fig, ax = plt.subplots(figsize=(width_in, height_in), layout="constrained")
+    fig, ax = plt.subplots(figsize=(width_in, height_in))
+    fig.subplots_adjust(left=0.16, right=0.97, **TOP_BOX)
     palette = {m: hs.COLOURS[m] for m in ("Bayesian-ARGOS", "SINDy")}
+    # cut=2 (seaborn's default): the density tapers two bandwidths beyond the data instead of
+    # ending in a flat edge at the smallest and largest RMSE (Yuzheng, 2026-11-01: the violins
+    # looked cut off at the bottom)
     sns.violinplot(data=long, x="interval", y="RMSE", hue="method", hue_order=list(palette),
-                   order=RANGE_LABELS, palette=palette, alpha=0.6, linewidth=1.0, cut=0, ax=ax, legend=False)
+                   order=RANGE_LABELS, palette=palette, alpha=0.6, linewidth=1.0, cut=2, ax=ax, legend=False)
     hs.style_axes(ax)
     means = long.groupby(["interval", "method"]).RMSE.mean()
     for method, offset in (("Bayesian-ARGOS", -0.2), ("SINDy", 0.2)):
@@ -97,9 +110,9 @@ def panel_a(out, width_in=8.3, height_in=9.4, print_means=True):
     ax.set_ylim(bottom=0)
     handles = [Patch(facecolor=palette[m], alpha=0.6, edgecolor="black", linewidth=0.8,
                      label=f"{m} (n = {counts[m]} valid experiments)") for m in palette]
-    fig.legend(handles=handles, loc="outside lower center", ncol=1, title=None, handlelength=1.6)
-    hs.tag(fig, "a", 0.0, 1.0, va="top")
-    save_panel(fig, out)
+    hs.hanging_legend(fig, handles, ncol=1, gap_in=0.0, anchor_y=LEGEND_TOP, handlelength=1.6)
+    hs.tag(fig, "a", 0.01, 0.99, va="top")
+    save_panel(fig, out, tight=False)
     table = means.unstack().reindex(RANGE_LABELS)
     print(table.round(4).to_string())
     print("valid experiments:", counts)
@@ -108,13 +121,19 @@ def panel_a(out, width_in=8.3, height_in=9.4, print_means=True):
 
 # ---------------------------------------------------------------- panel b (and the SI overlays)
 def latent_overlay(gru, sim, out, q_lo=None, q_hi=None, title=None, tag="b",
-                   width_in=9.7, height_in=9.4):
+                   width_in=9.7, height_in=TOP_H, box=None):
     """Three stacked sub-panels z1, z2, z3 against time (weeks): GRU latent trajectory (solid),
-    Bayesian-ARGOS posterior-mean simulation (dashed) and, if given, the 5 to 95 % band."""
+    Bayesian-ARGOS posterior-mean simulation (dashed) and, if given, the 5 to 95 % band.
+    box: a fixed axes box (figure fractions, left/right/bottom/top) with the legend hung at
+    LEGEND_TOP and the whole canvas saved (Fig. 9b, aligned with 9a); None: constrained layout
+    with the legend hung LEGEND_GAP_IN below the canvas (the SI overlays)."""
     d = gru.shape[1]
     n = min(len(gru), len(sim))
     x = np.arange(n)
-    fig, axes = plt.subplots(d, 1, figsize=(width_in, height_in), sharex=True, layout="constrained")
+    fig, axes = plt.subplots(d, 1, figsize=(width_in, height_in), sharex=True,
+                             layout=None if box else "constrained")
+    if box:
+        fig.subplots_adjust(hspace=0.3, **box)
     axes = np.atleast_1d(axes)
     for i, ax in enumerate(axes):
         if q_lo is not None:
@@ -140,27 +159,32 @@ def latent_overlay(gru, sim, out, q_lo=None, q_hi=None, title=None, tag="b",
         handles.append(Patch(facecolor=hs.PRIMARY, alpha=hs.BAND_ALPHA,
                              label="90 % posterior band (1,000 coefficient draws)"))
     ncol = 2 if width_in >= 15 else 1
-    fig.legend(handles=handles, loc="outside lower center", ncol=ncol, title=None, handlelength=2.2)
+    if box:
+        hs.hanging_legend(fig, handles, ncol=ncol, gap_in=0.0, anchor_y=LEGEND_TOP)
+    else:
+        hs.hanging_legend(fig, handles, ncol=ncol)
     if tag:
-        hs.tag(fig, tag, 0.0, 1.0, va="top")
-    save_panel(fig, out)
+        hs.tag(fig, tag, 0.01 if box else 0.0, 0.99 if box else 1.0, va="top")
+    save_panel(fig, out, tight=box is None)
 
 
 def panel_b(out, bands=BANDS):
     d = np.load(bands)
     latent_overlay(d["gru_train"], d["point_train"], out, q_lo=d["q05_train"], q_hi=d["q95_train"],
-                   title="experiment 91, training period", tag="b")
+                   title="experiment 91, training period", tag="b", box=dict(left=0.13, right=0.98, **TOP_BOX))
     hw = (d["q95_train"] - d["q05_train"]) / 2
     for w in (52, 1040):
         print(f"band half-width at week {w}: " + " / ".join(f"{v:.2f}" for v in hw[w - 1]))
 
 
 # ---------------------------------------------------------------- panel c (and the SI maps)
-def field_maps(fields_npz, rmse_csv, out, title=None, tag="c", width_in=18.0, height_in=6.4,
+def field_maps(fields_npz, rmse_csv, out, title=None, tag="c", width_in=18.0, height_in=6.6,
                lat_range=(0, 180), lon_range=(0, 360), robust_pct=(1, 99)):
     """Observations, predictions and differences on the globe at the stored horizons; a styled
     copy of plot_fields.plot_zoomed_comparison (same field reconstruction, robust colour limits,
-    symmetric difference limits and per-map RMSE), with the house colour maps and frames."""
+    symmetric difference limits and per-map RMSE), with the house colour maps and frames. The
+    two colour bars lie horizontally in a row below the maps (2026-11-01), so that the maps
+    take the full width of the canvas; no title (the caption states the experiment)."""
     d = np.load(fields_npz)
     ts = [int(t) for t in d["timesteps"]]
     sst_locs = d["sst_locs"]
@@ -182,7 +206,9 @@ def field_maps(fields_npz, rmse_csv, out, title=None, tag="c", width_in=18.0, he
     print("map RMSE (°C):", " / ".join(f"t = {t}: {r:.2f}" for t, r in zip(ts, rmse)))
 
     n = len(ts)
-    fig, axes = plt.subplots(3, n, figsize=(width_in, height_in), layout="constrained")
+    fig = plt.figure(figsize=(width_in, height_in), layout="constrained")
+    gs = fig.add_gridspec(4, n, height_ratios=[1, 1, 1, CBAR_ROW])
+    axes = np.array([[fig.add_subplot(gs[r, j]) for j in range(n)] for r in range(3)])
     fig.get_layout_engine().set(w_pad=0.03, h_pad=0.03, wspace=0.0, hspace=0.0)
     for j, t in enumerate(ts):
         im0 = axes[0, j].imshow(real[j], cmap=hs.FIELD_CMAP, norm=Normalize(vmin, vmax), aspect="equal",
@@ -200,9 +226,11 @@ def field_maps(fields_npz, rmse_csv, out, title=None, tag="c", width_in=18.0, he
             hs.image_axes(axes[r, j])
     for r, lab in enumerate(["observations", "predictions", "differences"]):
         axes[r, 0].set_ylabel(lab)
-    cb0 = fig.colorbar(im0, ax=list(axes[:2].ravel()), shrink=0.92, pad=0.01, aspect=28)
+    half = n // 2
+    cax0 = fig.add_subplot(gs[3, 0:half]); cax1 = fig.add_subplot(gs[3, n - half:n])
+    cb0 = fig.colorbar(im0, cax=cax0, orientation="horizontal")
     cb0.set_label("SST (°C)")
-    cb1 = fig.colorbar(im2, ax=list(axes[2].ravel()), shrink=0.92, pad=0.01, aspect=14)
+    cb1 = fig.colorbar(im2, cax=cax1, orientation="horizontal")
     cb1.set_label("difference (°C)")
     for cb in (cb0, cb1):
         cb.outline.set_linewidth(0.8); cb.outline.set_edgecolor("0.5")
@@ -225,7 +253,7 @@ def main():
     panel_a(os.path.join(a.out_dir, "fig9a.pdf"), print_means=not a.no_means)
     panel_b(os.path.join(a.out_dir, "fig9b.pdf"))
     field_maps(os.path.join(HERE, "results", "fields_91.npz"), os.path.join(HERE, "results", "rmse_91.csv"),
-               os.path.join(a.out_dir, "fig9c.pdf"), title="experiment 91, test period", tag="c")
+               os.path.join(a.out_dir, "fig9c.pdf"), title=None, tag="c")
 
 
 if __name__ == "__main__":

@@ -7,8 +7,9 @@ or re-decoded). Reuses the panel functions of make_fig9_panels.py:
         simulation over the training period (as Fig. 9b, without a band;
         results/latent_train_<it>.npz), 18 in canvas;
      b  global maps of observations, predictions and differences at
-        t = 50 ... 250 weeks (as Fig. 9c; results/fields_<it>.npz, RMSE
-        checked against results/rmse_<it>.csv), 18 in canvas;
+        t = 50 ... 250 weeks (as Fig. 9c, colour bars below the maps and no
+        title; results/fields_<it>.npz, RMSE checked against
+        results/rmse_<it>.csv), 18 in canvas;
   latent_space_80:
      the overlay only, with no tag: experiment 80 illustrates a quasi-static
      level in its third coordinate.
@@ -52,7 +53,7 @@ def main():
             field_maps(os.path.join(HERE, "results", f"fields_{it}.npz"),
                        os.path.join(HERE, "results", f"rmse_{it}.csv"),
                        os.path.join(a.out_dir, f"si_latent_{it}_b.pdf"),
-                       title=f"experiment {it}, test period", tag="b")
+                       title=None, tag="b")
 
 
 if __name__ == "__main__":

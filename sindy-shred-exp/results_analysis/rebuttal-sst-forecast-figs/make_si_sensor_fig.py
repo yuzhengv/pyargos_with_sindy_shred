@@ -6,7 +6,8 @@ same 52-week history window, the same per-panel RMSE over the 250 forecast
 weeks (checked against results/sensor_rmse_91.csv); no grid, outward ticks,
 sans-serif, one vertical scale for all panels (full data range, not the
 2 to 98 % robust range of the original, so that no peak is clipped), the
-training/forecast boundary as a dotted grey line, legend below.
+training/forecast boundary as a dotted grey line, legend below (hung 0.35 in
+under the axis titles, 2026-11-01).
 
 The SI shows the figure as a sidewaysfigure, so it is authored for a final
 width of 247 mm: canvas 247 / 25.4 * 2.5 = 24.31 in wide, aspect 0.5
@@ -73,7 +74,7 @@ def sensor_grid(obs, fore, out, rmse_csv=None, rows=3, cols=6, aspect=0.5, lw=1.
         axes[rows - 1, c].set_xlabel("time (weeks)")
     handles = [Line2D([0], [0], color=hs.GRU, lw=lw, label="observation"),
                Line2D([0], [0], color=hs.PRIMARY, lw=lw, linestyle="--", label="forecast (posterior mean)")]
-    fig.legend(handles=handles, loc="outside lower center", ncol=2, title=None, handlelength=2.2)
+    hs.hanging_legend(fig, handles, ncol=2, gap_in=0.35)
     hs.save(fig, out, pad_inches=0.02)
     plt.close(fig)
     if rmse_csv is not None:

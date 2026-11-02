@@ -19,7 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STYLE = os.path.join(HERE, "house.mplstyle")
 
 K = 2.5                                     # canvas = K x final size
-PT = {"tag": 8 * K, "text": 7 * K, "tick": 6.5 * K}
+PT = {"tag": 8 * K, "text": 7 * K, "tick": 6.5 * K, "legend": 9 * K}
 
 COLOURS = {"Bayesian-ARGOS": "#505ed5", "ARGOS": "#d74d3d", "SINDy": "#8eb63d"}
 EXTRA = ["#FA5524", "#EF60AD", "#009E9E", "#8B5A2B"]
@@ -74,10 +74,30 @@ def tag(fig_or_ax, letter, x=0.0, y=1.0, **kw):
     return fig_or_ax.text(x, y, letter, transform=fig_or_ax.transAxes, **opts)
 
 
-def save(fig, path, dpi=600, pad_inches=0.1):
+def save(fig, path, dpi=600, pad_inches=0.1, tight=True):
     """Vector PDF, tight bounding box. Panels that are composed into one figure by
-    TikZ pass a small pad (0.02 in) so that their widths add up to the canvas."""
+    TikZ pass a small pad (0.02 in) so that their widths add up to the canvas;
+    tight=False saves the whole canvas, so that panels drawn with the same
+    canvas and the same axes box (Fig. 9a and 9b) align exactly in the composite."""
     os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
-    fig.savefig(path, dpi=dpi, bbox_inches="tight", pad_inches=pad_inches,
+    fig.savefig(path, dpi=dpi, bbox_inches="tight" if tight else None, pad_inches=pad_inches,
                 facecolor="white", edgecolor="none")
     return path
+
+
+LEGEND_GAP_IN = 0.3         # gap between the x-axis title and a legend row below it (3 mm final)
+
+
+def hanging_legend(fig, handles, ncol=1, gap_in=LEGEND_GAP_IN, anchor_y=0.0, **kw):
+    """A figure legend hung below the axes area: its top edge gap_in below the
+    anchor height anchor_y (figure fraction; 0 = the canvas bottom, where
+    constrained layout places the x-axis title), so that the gap between the
+    axis title and the legend is explicit (Yuzheng, 2026-11-01: "enlarge the
+    gap between axis name and legends"). Under constrained layout the legend is
+    outside the canvas and a tight bounding box (save) includes it; with a fixed
+    axes box (fig.subplots_adjust) anchor_y is the top of the reserved strip."""
+    h = fig.get_size_inches()[1]
+    opts = dict(loc="upper center", bbox_to_anchor=(0.5, anchor_y - gap_in / h), ncol=ncol, frameon=False,
+                handlelength=2.2, columnspacing=1.6, labelspacing=0.6)
+    opts.update(kw)
+    return fig.legend(handles=handles, **opts)

@@ -2,7 +2,8 @@
 # standard: reply-to-reviewers/Notes/plotting-standard.md, sections 4 and 5.2).
 # Authoring route (4.2.3, D1): canvas = 2.5 x final width (18 in for a 183 mm
 # figure), sizes x 2.5: tags 20 pt bold, text 17.5 pt, tick labels 16 pt,
-# ticks 7.1 pt (1 mm final), spines 1.25 pt (0.5 pt final).
+# ticks 7.1 pt (1 mm final), spines 1.25 pt (0.5 pt final); legends 22.5 pt
+# (9 pt final, as the shared legend rows of the R figures; 2026-11-01).
 font.family: sans-serif
 font.sans-serif: Helvetica, Arial, Nimbus Sans, Liberation Sans, DejaVu Sans
 mathtext.fontset: custom
@@ -19,7 +20,7 @@ figure.titleweight: normal
 axes.labelsize: 17.5
 xtick.labelsize: 16
 ytick.labelsize: 16
-legend.fontsize: 17.5
+legend.fontsize: 22.5
 legend.title_fontsize: 17.5
 legend.frameon: False
 axes.spines.top: False
