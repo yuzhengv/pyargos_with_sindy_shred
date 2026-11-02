@@ -19,6 +19,13 @@
 > 91 equations). Copies under the same names sit in the manuscript repository
 > (`imgs/`, `si-plots/`, `reply-to-reviewers/Figures/`). The earlier figures in
 > `figures/` are unchanged.
+>
+> **Update 2026-11-02 (Yuzheng's second round of figure comments):** the SST map
+> of the Fig. 8 schematic and its colour bar recoloured from coolwarm to the Fig. 9
+> field map (`recolour_fig8_map.py`, laid over the originals by
+> `compose_fig8_schematic.sh`; values and land mask unchanged); 4 mm between the
+> Fig. 9 legends and panel c; the Supplementary latent-space figures with 2 mm
+> above the overlay legend and 5 mm below it.
 
 Referee 1 asked why "the SST dataset suddenly only covers the Eastern Hemisphere"
 in Fig. 8 while Fig. 7 shows the whole planet. Nothing in the pipeline is
@@ -74,11 +81,12 @@ copied verbatim.
 | `run_all.sh` | eval-mode run (the revision figures) then a `--dropout-active` run (comparison only, `_dropout` suffix on every output) | ~3 min |
 | `make_readme_results.py` | rewrites the Results section below from `results/` | seconds |
 | `make_fig9_panels.py` | revised Fig. 9 panels in the house style: a, RMSE violins from `../rebuttal-latent-models/tables/experiments.csv` (degree-1, stage1 and valid: 87 Bayesian-ARGOS and 67 SINDy experiments; means 0.921/1.014/1.297 and 0.994/1.221/1.617 °C); b, experiment 91 latent trajectories with the 90 % band from `../rebuttal-posterior-forecast/results/latent_bands_91.npz`; c, global maps from `results/fields_91.npz`, RMSE checked against `results/rmse_91.csv` (0.67/0.74/0.67/0.72/0.84 °C); canvases 8.3, 9.7 and 18 in wide (k = 2.5), saved to `figures/house/fig9{a,b,c}.pdf`. Since 2026-11-01: a and b 7.6 in tall with one fixed axes box and the legend 0.35 in below the axis title, saved as whole canvases so that they align; a's violins with seaborn's default `cut=2` (tapered ends); c without a title and with the two colour bars horizontal below the maps, so that the five maps take the full width | 3 s |
-| `compose_fig9.sh` | generates a standalone TeX file and includes the three panels at scale 0.4 (a left, b right, c below) in a 183 mm box with a 1 mm border: `figures/house/sst_application.pdf`, 185 x 149 mm (2026-11-01; 163 mm before) | seconds |
+| `compose_fig9.sh` | generates a standalone TeX file and includes the three panels at scale 0.4 (a left, b right, c below) in a 183 mm box with a 1 mm border: `figures/house/sst_application.pdf`, 185 x 151 mm (2026-11-02: 4 mm between the legends of a, b and panel c; 149 mm on 2026-11-01, 163 mm before) | seconds |
 | `make_si_sensor_fig.py` | Supplementary Fig. S16 (18 held-out sensors of experiment 91, eval mode, `results/sensor_trajectories_91.npz`) in the house style: 3 x 6 grid, one vertical scale (full data range), RMSE per panel checked against `results/sensor_rmse_91.csv` (mean 0.104, normalised units); canvas 24.3 x 12.2 in for a final width of 247 mm (sidewaysfigure); legend hung 0.35 in below the axis titles (2026-11-01) | 1 s |
-| `make_si_latent_figs.py` | Supplementary latent-space panels, 18 in canvases: experiments 123 and 18 (a, GRU latent trajectory against the posterior-mean simulation over the training period; b, global maps with RMSE from `results/rmse_<it>.csv`, no title, colour bars below the maps) and experiment 80 (overlay only, quasi-static third coordinate); the overlay legends hang 0.3 in below the axis title (2026-11-01) | 6 s |
-| `compose_si_latent.sh` | composes them at scale 0.4 into `figures/house/latent_space_<it>.pdf` (183 mm plus a 1 mm border) | seconds |
-| `compose_fig8_schematic.sh` | revised Fig. 8: covers the three old equation lines in the "Latent Dynamical System" box of `schematic-plots/pyargos_with_sindy_shred.pdf` with the box fill colour and typesets the experiment 91 posterior means (two decimals) in sans-serif mathematics (TikZ, helvet, sfmath, Helvetica minus sign): `figures/house/sindy_shred_integration.pdf` | seconds |
+| `make_si_latent_figs.py` | Supplementary latent-space panels, 18 in canvases: experiments 123 and 18 (a, GRU latent trajectory against the posterior-mean simulation over the training period; b, global maps with RMSE from `results/rmse_<it>.csv`, no title, colour bars below the maps) and experiment 80 (overlay only, quasi-static third coordinate); the overlay legends hang 0.2 in below the axis title (2026-11-02; 0.3 in on 2026-11-01) | 6 s |
+| `compose_si_latent.sh` | composes them at scale 0.4 into `figures/house/latent_space_<it>.pdf` (183 mm plus a 1 mm border; since 2026-11-02 panel b follows 5 mm below a's legend, wider than the 2 mm above the legend, so that the panels separate) | seconds |
+| `compose_fig8_schematic.sh` | revised Fig. 8: covers the three old equation lines in the "Latent Dynamical System" box of `schematic-plots/pyargos_with_sindy_shred.pdf` with the box fill colour and typesets the experiment 91 posterior means (two decimals) in sans-serif mathematics (TikZ, helvet, sfmath, Helvetica minus sign): `figures/house/sindy_shred_integration.pdf`; since 2026-11-02 it first runs `recolour_fig8_map.py` and lays the recoloured map and colour bar exactly over the originals (placement read from the page's content stream) | seconds |
+| `recolour_fig8_map.py` | reads the schematic's SST map "SST Reconstruction (t = 100)" (6016 x 3022 px, coolwarm, binary land mask) and its colour bar (151 x 3021 px) from the page with pypdf, maps every colour to its coolwarm level and draws the level in the Fig. 9 field map (`house_style.FIELD_CMAP`, viridis); writes `figures/house/fig8_{map,cbar}_viridis.png` (the colour bar matches the 256-step table exactly, the map's 256 palette colours lie within 1.7 RGB units of it; values, mask, title and ticks unchanged) | seconds |
 
 ```bash
 conda activate env_dgx_spark

@@ -13,7 +13,7 @@ ITS="${1:-123 18 80}"
 PANELS=figures/house
 SCALE=0.4
 WIDTH_MM=183
-ROWGAP_MM=2
+ROWGAP_MM=5      # between a (with its legend) and b: wider than the 2 mm gap above a's legend, so that the panels separate (Yuzheng, 2026-11-02; 2 mm before)
 
 width_mm() { pdfinfo "$1" | awk -v s="$SCALE" '/Page size/ {printf "%.2f", $3 * s * 25.4 / 72}'; }
 

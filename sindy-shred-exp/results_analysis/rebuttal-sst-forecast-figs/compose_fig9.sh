@@ -15,7 +15,7 @@ TEX=figures/house/sst_application.tex
 SCALE=0.4
 WIDTH_MM=183
 GUTTER_MM=0      # between a and b: their canvases (8.3 + 9.7 in) already fill the box
-ROWGAP_MM=2      # between the top row and c
+ROWGAP_MM=4      # between the legends of a and b and panel c (2 mm until 2026-11-02; Yuzheng: "a bit larger")
 
 width_pt() { pdfinfo "$1" | awk '/Page size/ {print $3}'; }
 for p in a b c; do

@@ -85,7 +85,8 @@ def save(fig, path, dpi=600, pad_inches=0.1, tight=True):
     return path
 
 
-LEGEND_GAP_IN = 0.3         # gap between the x-axis title and a legend row below it (3 mm final)
+LEGEND_GAP_IN = 0.2         # gap between the x-axis title and a legend row below it (2 mm final; 0.3 in until 2026-11-02:
+                            # Yuzheng, the gap above a legend shorter than the gap to the panel below it, compose_si_latent.sh)
 
 
 def hanging_legend(fig, handles, ncol=1, gap_in=LEGEND_GAP_IN, anchor_y=0.0, **kw):
