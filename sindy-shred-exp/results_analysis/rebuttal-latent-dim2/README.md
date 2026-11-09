@@ -4,7 +4,10 @@
 > ~160 s each on the DGX Spark), identified and compared with their r = 3
 > counterparts; `tables/summary.md`, `tables/latent_dim_comparison.csv`. Result: the
 > two-dimensional latent space reconstructs the field worse and yields worse
-> decoded forecasts; see "Results".
+> decoded forecasts; see "Results". 2026-11-09: the filter-passing convention of
+> the 150-experiment batch added (validity among networks passing the filter,
+> medians over the valid models); the Supplementary Information reports that
+> convention, under which the valid models of the two dimensions forecast alike.
 
 Referee 1 asks why a three-dimensional latent system is sought when the third
 mode is short-lived. The 150-experiment log (`../rebuttal-latent-models/`)
@@ -63,6 +66,21 @@ is written there, and the existing r = 3 models are not touched.
 | SINDy valid model | 16 | 16 | – |
 | SINDy decoded-forecast RMSE, pairs valid for both (n = 13), median | 1.74 °C | 1.44 °C | r = 2 lower in 5 of 13; p = 0.15 |
 
+The rows above identify the latent model for all 20 networks, whether or not they
+pass the stage-1 filter. Under the filter-passing convention of the 150-experiment
+batch (validity counted among the networks that pass the filter, medians over the
+valid models; `tables/summary.md`, second block), which the Supplementary
+Information (Table S4) reports since 2026-11-09:
+
+| outcome | r = 2 | r = 3 | comparison |
+|---|---|---|---|
+| networks passing the filter | 9 of 20 | 14 of 20 | – |
+| Bayesian-ARGOS valid model among them | 7 of 9 | 11 of 14 | – |
+| Bayesian-ARGOS decoded-forecast RMSE 0–275 wk, medians over the valid passing models | 0.86 °C (n = 7) | 0.93 °C (n = 11) | Mann-Whitney U p = 0.48; 5 pairs valid on both sides, too few for a paired test |
+| Bayesian-ARGOS identified period, valid passing models | median 1.010 yr, all within 0.025 yr of one year | median 1.018 yr, all within 0.036 yr | the off-period r = 2 models (exps 7, 8, 19) all fail the filter |
+| SINDy valid model among them | 8 of 9 | 10 of 14 | – |
+| SINDy decoded-forecast RMSE, medians over the valid passing models | 1.12 °C (n = 8) | 1.41 °C (n = 10) | p = 0.20 |
+
 Reading. With two latent coordinates the network can only encode the annual
 oscillation (its phase and amplitude); the slowly varying level that the third
 coordinate carries in the r = 3 networks has nowhere to go, so the decoded field
@@ -70,7 +88,11 @@ is reconstructed less accurately (fewer latent spaces pass the 0.05 filter) and
 the latent trajectory is less well described by an autonomous linear model
 (decoded forecasts 0.4–0.6 °C worse at the median, and in three of twenty cases
 the identified oscillation is no longer annual). The identification step is not
-the limitation: the r = 2 models are valid as often as the r = 3 ones. This is
+the limitation: the r = 2 models are valid as often as the r = 3 ones, and under
+the filter-passing convention the valid r = 2 models also forecast as accurately as
+the valid r = 3 ones (the worse forecasts and the off-period models above belong to
+r = 2 networks that fail the filter), so the limitation is the reconstruction of the
+field by the two-dimensional representation. This is
 the direct answer to "why not find a 2D latent system directly": a 2-D latent
 space is a worse representation of the field, and the identification inherits
 that. Caveats: n = 20; the r = 3 networks were trained on the HPC and the r = 2

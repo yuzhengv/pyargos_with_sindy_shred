@@ -4,6 +4,12 @@ Reads results/train_<it>_r<r>.json (reconstruction), results/identification_r<r>
 (identification and forecast on the r = 2 latent trajectory) and the r = 3 rows of
 ../rebuttal-latent-models/tables/experiments.csv. Writes tables/latent_dim_comparison.csv and
 tables/summary.md (paired counts and medians, Wilcoxon signed-rank p-values where n allows).
+
+Two conventions are reported. "All 20 networks": the latent model is identified for every
+network whether or not it passes the stage-1 reconstruction filter (the original design of this
+folder). "Filter-passing convention": validity is counted among the networks that pass the
+filter and forecast errors and periods are summarized over the valid models, as the 150-experiment
+batch does; the Supplementary Information (Table S4) reports this convention since 2026-11-09.
 """
 import argparse
 import glob
@@ -50,7 +56,7 @@ def main():
     d.to_csv(os.path.join(HERE, "tables", "latent_dim_comparison.csv"))
 
     from scipy.stats import wilcoxon
-    L = [f"# Latent dimension {r} versus 3: paired comparison on {len(d)} sensor sets\n"]
+    L = [f"# Latent dimension {r} versus 3: paired comparison on {len(d)} sensor sets\n", "## All 20 networks (identification run whether or not the network passes the filter)\n"]
     def paired(col, label, lower_better=True, valid_key=None):
         x, y = d[f"{col}_r{r}"], d[f"{col}_r3"]; ok = x.notna() & y.notna()
         if valid_key:  # restrict to pairs where both identified models are valid
@@ -71,6 +77,24 @@ def main():
             L.append(paired(f"{key}_rmse", f"{name} decoded-forecast RMSE 0-275 wk (degC), all pairs with a finite forecast"))
             L.append(paired(f"{key}_latent_mse", f"{name} training latent MSE"))
             L.append(paired(f"{key}_period", f"{name} identified period (yr)", lower_better=False).replace("better in", "larger in"))
+    # Filter-passing convention (as in ../rebuttal-latent-models: validity among filter-passing networks)
+    from scipy.stats import mannwhitneyu
+    p3, pr = d.stage1_r3.astype(bool), d[f"stage1_r{r}"].astype(bool)
+    L.append(f"\n## Filter-passing convention (SI Table S4): validity among networks passing the filter, medians over the valid models\n")
+    L.append(f"- networks passing the filter (rRMSE <= 0.05): r={r} {int(pr.sum())} of {len(d)}, r=3 {int(p3.sum())} of {len(d)}")
+    for key, name in [("ba", "Bayesian-ARGOS"), ("sindy", "SINDy")]:
+        if f"{key}_valid_r{r}" not in d.columns:
+            continue
+        v3, vr = d[f"{key}_valid_r3"].fillna(False).astype(bool), d[f"{key}_valid_r{r}"].fillna(False).astype(bool)
+        L.append(f"- {name} valid model among passing networks: r={r} {int((pr & vr).sum())} of {int(pr.sum())}, r=3 {int((p3 & v3).sum())} of {int(p3.sum())}")
+        a, b = d.loc[p3 & v3, f"{key}_rmse_r3"].dropna(), d.loc[pr & vr, f"{key}_rmse_r{r}"].dropna()
+        pv = mannwhitneyu(a, b).pvalue if len(a) and len(b) else float("nan")
+        L.append(f"- {name} decoded-forecast RMSE 0-275 wk (degC), medians over the valid passing models: r={r} {b.median():.3f} (n = {len(b)}) vs r=3 {a.median():.3f} (n = {len(a)}); Mann-Whitney U p = {pv:.3f}")
+        ok = p3 & pr & v3 & vr
+        x, y = d.loc[ok, f"{key}_rmse_r{r}"], d.loc[ok, f"{key}_rmse_r3"]
+        L.append(f"- {name} decoded-forecast RMSE, pairs passing and valid for both: n = {int(ok.sum())}" + (f", median r={r} {x.median():.3f} vs r=3 {y.median():.3f}, r={r} lower in {int((x < y).sum())}" if ok.sum() else ""))
+        q3, qr = d.loc[p3 & v3, f"{key}_period_r3"].dropna(), d.loc[pr & vr, f"{key}_period_r{r}"].dropna()
+        L.append(f"- {name} identified period (yr), valid passing models: r={r} median {qr.median():.3f}, max |period - 1| {float((qr - 1).abs().max()):.3f} (n = {len(qr)}); r=3 median {q3.median():.3f}, max |period - 1| {float((q3 - 1).abs().max()):.3f} (n = {len(q3)})")
     open(os.path.join(HERE, "tables", "summary.md"), "w").write("\n".join(L) + "\n")
     print("\n".join(L))
 

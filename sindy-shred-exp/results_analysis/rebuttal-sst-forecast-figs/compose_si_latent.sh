@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Compose the Supplementary latent-space figures from the panels written by
-# make_si_latent_figs.py: for experiments 123 and 18, a (latent overlay) above
-# b (global maps); for experiment 80 the overlay alone. Each panel is included
+# make_si_latent_figs.py: for experiments 123, 18 and 80, a (latent overlay)
+# above b (global maps); experiment 80 had the overlay alone until 2026-11-09. Each panel is included
 # at scale 0.4 = 1/2.5 of its 18 in canvas inside a 183 mm box with a 1 mm
 # border, as compose_fig9.sh does, so \includegraphics[width=\textwidth] in the
 # SI shows the figure at 183 mm with the house text sizes.

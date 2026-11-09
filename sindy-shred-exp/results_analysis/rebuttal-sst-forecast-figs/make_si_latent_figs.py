@@ -2,7 +2,7 @@
 house style, from the stored arrays of this folder (nothing is re-identified
 or re-decoded). Reuses the panel functions of make_fig9_panels.py:
 
-  latent_space_123, latent_space_18:
+  latent_space_123, latent_space_18, latent_space_80:
      a  GRU latent trajectory against the Bayesian-ARGOS posterior-mean
         simulation over the training period (as Fig. 9b, without a band;
         results/latent_train_<it>.npz), 18 in canvas;
@@ -10,9 +10,8 @@ or re-decoded). Reuses the panel functions of make_fig9_panels.py:
         t = 50 ... 250 weeks (as Fig. 9c, colour bars below the maps and no
         title; results/fields_<it>.npz, RMSE checked against
         results/rmse_<it>.csv), 18 in canvas;
-  latent_space_80:
-     the overlay only, with no tag: experiment 80 illustrates a quasi-static
-     level in its third coordinate.
+  (experiment 80 had the overlay only until 2026-11-09, when Yuzheng asked for
+   its maps as well, so that the three example figures are uniform.)
 
 Panels go to figures/house/si_latent_<it>_{a,b}.pdf and are composed at
 183 mm by compose_si_latent.sh (scale 0.4 = 1/2.5 of the canvas).
@@ -44,7 +43,7 @@ def main():
     hs.use()
     os.makedirs(a.out_dir, exist_ok=True)
     for it in [int(v) for v in a.iterations.split(",")]:
-        with_maps = it != 80
+        with_maps = True
         d = np.load(os.path.join(HERE, "results", f"latent_train_{it}.npz"))
         latent_overlay(d["gru"], d["sim"], os.path.join(a.out_dir, f"si_latent_{it}_a.pdf"),
                        title=f"experiment {it}, training period", tag="a" if with_maps else None,
