@@ -55,7 +55,7 @@ RANGES = [(0, 100), (100, 200), (200, 275)]
 RANGE_LABELS = ["0 to 100", "100 to 200", "200 to 275"]
 PAD = 0.02           # tight-bbox pad (in) of panel c
 LW = 1.8             # line width on the canvas (0.72 pt final) for the dense latent series
-TOP_H = 7.6          # canvas height (in) of panels a and b: 76 mm final
+TOP_H = 8.8          # canvas height (in) of panels a and b: 88 mm final (76 mm until 2026-11-09, raised to fill the page once the legends were shortened)
 TOP_BOX = dict(bottom=0.33, top=0.93)     # the axes box of a and b (figure fractions): same levels in both
 LEGEND_TOP = 0.205   # top of the legend of a and b (figure fraction): 0.35 in below the x-axis title; b's three rows end 0.1 in above the canvas edge
 CBAR_ROW = 0.11      # height of the colour-bar row of c relative to a map row

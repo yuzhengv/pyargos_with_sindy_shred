@@ -99,7 +99,7 @@ def panel_third_mode(ax, s, x):
 def figure(s, out):
     hs.use()
     x = np.arange(len(s)) + 1
-    fig, (ax_a, ax_b) = plt.subplots(2, 1, figsize=hs.canvas(183, aspect=0.78), sharex=True,
+    fig, (ax_a, ax_b) = plt.subplots(2, 1, figsize=hs.canvas(183, aspect=0.90), sharex=True,
                                      height_ratios=[1.0, 1.7], layout="constrained")
     panel_period(ax_a, s, x)
     panel_third_mode(ax_b, s, x)

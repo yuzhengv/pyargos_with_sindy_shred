@@ -230,6 +230,9 @@ part is zero in every draw). Of the 8 fast modes by the point estimate (e-foldin
 > the manuscript repository as `imgs/sst_ensemble_eigenvalues.pdf` (candidate main-text
 > Fig. 10). Reads `tables/experiments.csv` through `classify_third_mode.load()`;
 > nothing re-run, no package code touched. Runtime ~3 s.
+> 2026-11-09: canvas aspect 0.78 to 0.90 (`hs.canvas(183, aspect=0.90)`), so that the
+> figure fills the page it shares with its legend (Yuzheng: "Adjust the aspects of the
+> plots to reach the best of the visualization").
 
 Question (second-opinion review of the Section 2.5 redraft, 2026-10-31): the ensemble
 finding, a shared annual period and a slow mode sorted into three classes by its
