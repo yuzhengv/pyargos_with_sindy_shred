@@ -69,7 +69,7 @@ def sensor_grid(obs, fore, out, rmse_csv=None, rows=3, cols=6, aspect=0.5, lw=1.
     axes[0, 0].set_ylim(lo - pad, hi + pad)
     axes[0, 0].set_xlim(0, T)
     for r in range(rows):
-        axes[r, 0].set_ylabel("SST (normalised)")
+        axes[r, 0].set_ylabel("SST (normalized)")
     for c in range(cols):
         axes[rows - 1, c].set_xlabel("time (weeks)")
     handles = [Line2D([0], [0], color=hs.GRU, lw=lw, label="observation"),
